@@ -22,3 +22,4 @@ class Problem(CCJudgeBaseModel):
             raise ValueError(
                 "Problem name should contain lowercase letters and '-' only"
             )
+        return value
