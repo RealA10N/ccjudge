@@ -10,7 +10,7 @@ class SubmissionVerdict(str, Enum):
     Judging = "Judging"
     Right = "Right"
     Wrong = "Wrong"
-    runtime_error = "RuntimeError"
+    RuntimeError = "RuntimeError"
     CompilationError = "CompilationError"
     MemoryExceeded = "MemoryExceeded"
     TimeExceeded = "TimeExceeded"
