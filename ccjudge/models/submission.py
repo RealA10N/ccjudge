@@ -1,12 +1,8 @@
-import uuid
 from datetime import datetime
 from enum import Enum
-from typing import NewType
 
-import ccjudge.models
+from ccjudge.models import Problem, User
 from ccjudge.models.base import CCJudgeBaseModel
-
-SubmissionUid = NewType('SubmissionUid', uuid.UUID)
 
 
 class SubmissionVerdict(str, Enum):
@@ -21,8 +17,7 @@ class SubmissionVerdict(str, Enum):
 
 
 class Submission(CCJudgeBaseModel):
-    uid: SubmissionUid
     iat: datetime
-    user: ccjudge.models.User
-    problem: ccjudge.models.Problem
+    user: User
+    problem: Problem
     verdict: SubmissionVerdict
