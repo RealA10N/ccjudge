@@ -3,6 +3,7 @@
 from .problem import Problem
 from .user import User
 from .submission import Submission
+from .session import Session
 # fmt: on
 
-__all__ = ['Problem', 'User', 'Submission']
+__all__ = ['Problem', 'User', 'Submission', 'Session']
