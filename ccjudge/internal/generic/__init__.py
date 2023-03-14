@@ -2,6 +2,6 @@
 required by CCJudge. The user (admin) has full freedom on how to implement
 those interfaces. """
 
-from .queue import CCJudgeGenericQueue
+from .queue import GenericQueue
 
-__all__ = ['CCJudgeGenericQueue']
+__all__ = ['GenericQueue']

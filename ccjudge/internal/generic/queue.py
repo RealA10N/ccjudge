@@ -3,10 +3,10 @@ from typing import Generic, TypeVar
 
 from ccjudge.models.base import CCJudgeBaseModel
 
-T = TypeVar('T', bound=CCJudgeBaseModel)
+ModelT = TypeVar('ModelT', bound=CCJudgeBaseModel)
 
 
-class CCJudgeGenericQueue(ABC, Generic[T]):
+class GenericQueue(ABC, Generic[ModelT]):
     """ Queue for data that is modeled by CCJudge.
     This is an abstract definition. Subtypes of this type should implement their
     own `enqueue` and `dequeue` methods.
@@ -20,13 +20,13 @@ class CCJudgeGenericQueue(ABC, Generic[T]):
     documentation. """
 
     @abstractmethod
-    def enqueue(self, entry: T) -> None:
+    async def enqueue(self, entry: ModelT) -> None:
         """ Push an element to the queue. If the method does not raise an
         exception, it should be assumed that the entry was pushed successfully,
         and now appears exactly once in the queue. """
 
     @abstractmethod
-    def dequeue(self) -> T:
+    async def dequeue(self) -> ModelT:
         """ Remove the next element of the queue, and return it.
         If the method does not raise an exception, it should be assumed that
         exactly one entry was removed from the queue and returned as the return
