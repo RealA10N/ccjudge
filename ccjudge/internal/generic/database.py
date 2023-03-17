@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, AsyncGenerator, Generic, NewType, TypeVar
+from typing import Any, AsyncGenerator, Generic, NewType, Sequence, TypeVar
 
 from ccjudge.models.base import CCJudgeBaseModel, CCJudgeUid
 
@@ -20,7 +20,7 @@ class GenericDatabase(ABC, Generic[ModelT]):
     @abstractmethod
     async def find(
         self,
-        select: list[tuple[FieldPathT, Any]] | None = None,
+        select: Sequence[tuple[FieldPathT, Any]] | None = None,
         order_by: FieldPathT | None = None,
         limit: int | None = None,
     ) -> AsyncGenerator[ModelT, None]:
