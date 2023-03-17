@@ -31,3 +31,11 @@ class GenericQueue(ABC, Generic[ModelT]):
         If the method does not raise an exception, it should be assumed that
         exactly one entry was removed from the queue and returned as the return
         value. """
+
+    @abstractmethod
+    async def __len__(self) -> int | None:
+        """ Returns the queue size. Implementation of this method is required,
+        however it may return None. If the method actually returns the queue
+        size, it will be used to block new submissions in the case the queue
+        is too large (can be configured). Otherwise the judge will just ignore
+        this check. """
