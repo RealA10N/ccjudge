@@ -1,7 +1,10 @@
-from typing import IO
+from io import IOBase
 
 from ccjudge.models.base import CCJudgeBaseModel
 
 
 class Blob(CCJudgeBaseModel):
-    data: IO
+    file: IOBase
+
+    class Config:
+        arbitrary_types_allowed = True
