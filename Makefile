@@ -15,4 +15,4 @@ test:
 	$(PY) -m pytest tests/
 
 test-ci:
-	$(PY) -m pytest -vv tests/ --cov cptk/ --cov-report xml --cov-report term
+	$(PY) -m pytest -vv tests/ --cov ccjudge/ --cov-report xml --cov-report term
