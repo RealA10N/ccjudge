@@ -6,7 +6,7 @@ install:
 	$(PY) -m pip install .
 
 install-ci:
-	$(PY) -m pip install --U pip
+	$(PY) -m pip install -U pip
 	$(PY) -m pip install -r requirements-dev.txt
 	$(PY) -m pip install .
 
