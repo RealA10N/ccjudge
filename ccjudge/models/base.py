@@ -21,7 +21,11 @@ class CCJudgeBaseModel(BaseModel):
     @classmethod
     def create(cls: Type[T], **kwargs) -> T:
         """ Generate a random UUID and create a new model with the given args
-        and kwargs."""
+        and kwargs. We do not use a default_factory with uid, since we do not
+        want to accidentally create instances that generate a new uid when
+        actually the uid is missing. This method generates a new model instance
+        explicitly. """
+
         if 'uid' in kwargs:
             raise ValueError(
                 "Can't construct a new model when uid is provided")
