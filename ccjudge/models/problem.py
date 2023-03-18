@@ -1,25 +1,19 @@
 import datetime
-import string
-from typing import NewType
 
+from datasize import DataSize
 from pydantic import validator
 
 from ccjudge.models.base import CCJudgeBaseModel
 
-ProblemName = NewType('ProblemName', str)
-ByteCount = NewType('ByteCount', int)
-
 
 class Problem(CCJudgeBaseModel):
-    name: ProblemName
     timelimit: datetime.timedelta
-    memlimit: ByteCount
+    memlimit: DataSize
 
-    @validator('name')
-    def name_validator(cls, value: ProblemName) -> ProblemName:
-        VALID_CHARS = string.ascii_lowercase + '-'
-        if set(value) - set(VALID_CHARS):
-            raise ValueError(
-                "Problem name should contain lowercase letters and '-' only"
-            )
-        return value
+    @validator('memlimit', pre=True)
+    def convert_string_to_datasize(cls, value: str) -> DataSize:
+        # Because the logic of the DataSize constructor is mainly done in the
+        # __new__ and not the __init__ method, pydantic gets confused and does
+        # not automatically converts strings to datasize objects. This validator
+        # does that (using the pre=True flag)
+        return DataSize(value)
